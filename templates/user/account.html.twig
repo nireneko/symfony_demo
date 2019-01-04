@@ -1,0 +1,11 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block main %}
+    <div>Informacion del usuario {{ user.username|capitalize }}</div>
+
+    <div><a href="{{ path('user_password_change') }}">Change password</a></div>
+
+    {{ form(form) }}
+{% endblock %}

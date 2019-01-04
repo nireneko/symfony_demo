@@ -1,0 +1,14 @@
+{{ form_start(form_add, {
+    'attr': {
+        'class': 'form-inline js-progress-new',
+        'novalidate': 'novalidate'
+    }
+}) }}
+    {{ form_errors(form_add) }}
+
+    {{ form_widget(form_add.date) }}
+    {{ form_widget(form_add.weight) }}
+    {{ form_widget(form_add.measure) }}
+
+    <button type="submit" class="btn btn-primary">Crear</button>
+{{ form_end(form_add) }}

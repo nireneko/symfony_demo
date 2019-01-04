@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ include('menu--main.html.twig') }}
+
+    <div id="react-app" class="mt-4 mb-4"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-9">{% block main %}{% endblock %}</div>
+            <div class="col-3">{% block sidebar %}{% endblock%}</div>
+        </div>
+    </div>
+
+{% endblock %}

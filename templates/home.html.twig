@@ -1,0 +1,77 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}Intranet de {{ app.user.username }}{% endblock %}
+
+{% block main %}
+    <div>
+        <div class="mb-4">
+            <h3>El mejor progreso:</h3>
+            <span>{{ lower_progresses.weight }} kg a fecha de {{ lower_progresses.date|date('d-m-Y') }}</span>
+        </div>
+        <h3>Ultimos 10 progresos</h3>
+        <table class="table table-bordered table-striped ">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Medida</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for progress in last_progresses %}
+                {{ include('progress/_row_progress.html.twig') }}
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="js-progress-chart"></div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Day');
+            data.addColumn('number', 'Kg');
+
+            data.addRows([
+                {% for progress in last_progresses %}
+                {% set year = progress.date|date('Y') %}
+                {% set month = progress.date|date('m') - 1 %}
+                {% set day = progress.date|date('d') %}
+                [new Date({{ year }}, {{ month }}, {{ day }}), {{ progress.weight }}] {% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]);
+
+            var options = {
+                hAxis: {
+                    title: 'Dia del año'
+                },
+                vAxis: {
+                    title: 'Kg'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('js-progress-chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}

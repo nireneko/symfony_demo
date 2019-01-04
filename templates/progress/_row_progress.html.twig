@@ -1,0 +1,8 @@
+<tr >
+    <th scope="row"></th>
+    <td>{{ progress.date|date('d-m-Y') }}</td>
+    <td>{{ progress.weight }} kg</td>
+    <td>{{ progress.measure }} cm</td>
+    <td><a href="#" class="align-content-center js-remove-progress" data-url="{{ path('progress_delete_ajax', {id: progress.id}) }}"><i class="fas fa-trash-alt"></i></a>
+    </td>
+</tr>

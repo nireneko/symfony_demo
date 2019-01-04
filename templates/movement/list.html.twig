@@ -1,0 +1,12 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}Movimientos de {{ app.user.username }}{% endblock %}
+
+{% block main %}
+
+    {{ form(form) }}
+    <div>Listado de movimientos</div>
+    {% for movement in movements %}
+        <p>{{ movement.concept }}</p>
+    {% endfor %}
+{% endblock %}
