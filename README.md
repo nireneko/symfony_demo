@@ -1,6 +1,6 @@
-#Own Manager
+# Own Manager
 
-##About the project:
+## About the project:
 
 This is just one project to learn Symfony, if is useful for someone, you're welcome :)
 
@@ -8,7 +8,7 @@ With this, I'm trying to lear about best practices in Symfony and test new ideas
 
 If you want a really good demo code of Symfony, you can get from their [official demo][1]: 
 
-##Requirements:
+## Requirements:
 
 * PHP 7.2 or higher
 * MySQl 5.5 or higher
@@ -16,7 +16,7 @@ If you want a really good demo code of Symfony, you can get from their [official
 PHP 7.2 is required because this project use argon2i to encrypt the passwords.
 You can change this in /config/packages/secutity.yaml and change the encrypt system to bcrypt.
 
-##How use it:
+## How use it:
 
 Download it and execute:
 
@@ -42,11 +42,11 @@ And access using http://127.0.0.1:8000, by default, the Symfony server is liseni
 
 The default password of all users is "test".
 
-##Please
+## Please
 
 Never think on this project like something stable or ready for production, this is just for testing and learn, and it can change in any moment.
 
-##About author:
+## About author:
 
 I'm Drupal developer who want learn Symfony in deep :)
 
