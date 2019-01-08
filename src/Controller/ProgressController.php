@@ -25,13 +25,13 @@ class ProgressController extends BaseController
 {
 
     /**
-     * @Route("/", name="progress_list")
+     * @Route("/{page<\d+>}", name="progress_list", defaults={"page"=1})
+     * @param int $page
      * @param ProgressRepository $progressRepository
      * @param Request $request
      * @return Response
-     * @throws \Psr\Cache\InvalidArgumentException
      */
-    public function list(ProgressRepository $progressRepository, Request $request)
+    public function list(int $page, ProgressRepository $progressRepository, Request $request)
     {
         $user = $this->getUser();
 
@@ -46,21 +46,13 @@ class ProgressController extends BaseController
             $this->em->persist($progress);
             $this->em->flush();
 
-            $this->cache->deleteItem('progress_' . $user->getId());
+//            $this->cache->deleteItem('progress_' . $user->getId());
 
             return $this->render('progress/_row_progress.html.twig', [
                 'progress' => $progress
             ]);
         }
 
-        $item = $this->cache->getItem('progress_' . $user->getId());
-
-        if(!$item->isHit()) {
-            $item->set($progressRepository->getAllProgressOfUser($user));
-            $this->cache->save($item);
-        }
-
-        $progresses = $progressRepository->getAllProgressOfUser($user);//$item->get();
 
         if($request->isXmlHttpRequest()) {
             $html = $this->renderView('_form_add.html.twig', [
@@ -70,10 +62,30 @@ class ProgressController extends BaseController
             return new Response($html, 400);
         }
 
+//        $item = $this->cache->getItem('progress_' . $user->getId());
+
+//        if(!$item->isHit()) {
+//            $item->set($progressRepository->getAllProgressOfUser($user));
+//            $this->cache->save($item);
+//        }
+
+        $limit = 10;
+        $progresses = $progressRepository->getAllProgressOfUser($user, $page, $limit);//$item->get();
+
+        $progressesResult = $progresses['paginator'];
+        $progressesFullQuery = $progresses['query'];
+
+//        dd($progressesResult, $progressesFullQuery);
+
+        $maxPages = ceil($progresses['paginator']->count() / $limit);
+
         return $this->render('progress/list.html.twig', [
             'form_add' => $formAdd->createView(),
-            'user' => $user,
-            'progresses' => $progresses
+            'progresses' => $progressesResult,
+            'page' => $page,
+            'maxPages' => $maxPages,
+            'all_items' => $progressesFullQuery,
+
         ]);
     }
 

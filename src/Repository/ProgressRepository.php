@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Progress;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -21,14 +22,27 @@ class ProgressRepository extends ServiceEntityRepository
     }
 
 
-    public function getAllProgressOfUser(User $user)
+    public function getAllProgressOfUser(User $user, int $page = 1, int $limit = 10): array
     {
-       return $this->createQueryBuilder('p')
+        $query = $this->createQueryBuilder('p')
             ->andWhere('p.author = :user')
             ->setParameter('user', $user)
             ->orderBy('p.date', 'DESC')
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
+        $paginator = $this->paginate($query, $page, $limit);
+
+       return ['paginator' => $paginator, 'query' => $query];
+    }
+
+    public function paginate($dql, $page = 1, $limit = 3)
+    {
+        $paginator = new Paginator($dql);
+
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1)) // Offset
+            ->setMaxResults($limit); // Limit
+
+        return $paginator;
     }
 
     // /**
