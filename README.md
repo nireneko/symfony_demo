@@ -20,21 +20,21 @@ You can change this in /config/packages/secutity.yaml and change the encrypt sys
 
 Download it and execute:
 
-````
+```` bash
 $ composer install
 ````
 
 You need MySQL or MariaDB and configure the access on .env file, by default, the database name is "manager", the user "root" without password and the mysql port is 33067.
 Configure the connection and run this commands:
 
-````
+```` bash
 $ bin/console doctrine:database:create
 $ bin/console doctrine:migrations:migrate
 $ bin/console doctrine:fixtures:load
 ````
 After this, you can test it on you web server, or use the server provided by Symfony:
 
-````
+```` bash
 $ bin/console server:run
 ````
 
