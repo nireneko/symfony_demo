@@ -41,12 +41,12 @@ class DefaultController extends BaseController
 
         $progressRepository = $this->em->getRepository(Progress::class);
 
-        $lowerProgressess = $progressRepository->findBy(['author' => $user], ['weight' => 'ASC'])[0];
+        $lowerProgress = $progressRepository->findOneBy(['author' => $user], ['weight' => 'ASC']);
 
         $lastProgresses =  $progressRepository->findBy(['author' => $user], ['date' => 'DESC'], 10);
 
         return $this->render('home.html.twig', [
-            'lower_progresses' => $lowerProgressess,
+            'lower_progresses' => $lowerProgress,
             'last_progresses' => $lastProgresses,
         ]);
     }
