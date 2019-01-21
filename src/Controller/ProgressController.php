@@ -46,13 +46,10 @@ class ProgressController extends BaseController
             $this->em->persist($progress);
             $this->em->flush();
 
-//            $this->cache->deleteItem('progress_' . $user->getId());
-
             return $this->render('progress/_row_progress.html.twig', [
                 'progress' => $progress
             ]);
         }
-
 
         if($request->isXmlHttpRequest()) {
             $html = $this->renderView('_form_add.html.twig', [
@@ -62,20 +59,11 @@ class ProgressController extends BaseController
             return new Response($html, 400);
         }
 
-//        $item = $this->cache->getItem('progress_' . $user->getId());
-
-//        if(!$item->isHit()) {
-//            $item->set($progressRepository->getAllProgressOfUser($user));
-//            $this->cache->save($item);
-//        }
-
         $limit = 10;
         $progresses = $progressRepository->getAllProgressOfUser($user, $page, $limit);//$item->get();
 
         $progressesResult = $progresses['paginator'];
         $progressesFullQuery = $progresses['query'];
-
-//        dd($progressesResult, $progressesFullQuery);
 
         $maxPages = ceil($progresses['paginator']->count() / $limit);
 
@@ -93,15 +81,15 @@ class ProgressController extends BaseController
      * @Route("/ajax/delete/{id}", name="progress_delete_ajax", methods={"DELETE"})
      * @param Progress $progress
      * @return Response
-     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function deleteAjax(Progress $progress)
     {
-        $this->em->remove($progress);
-        $this->em->flush();
-
         $user = $this->getUser();
-        $this->cache->deleteItem('progress_' . $user->getId());
+
+        if ($user->getUsername() === $progress->getAuthor()->getUsername() ) {
+            $this->em->remove($progress);
+            $this->em->flush();
+        }
 
         return new Response(null, 204);
     }
