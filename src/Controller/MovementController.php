@@ -26,7 +26,7 @@ class MovementController extends BaseController
 {
 
     /**
-     * @Route("/", name="movement_list")
+     * @Route("", name="movement_list")
      * @param Request $request
      * @param MovementRepository $movementRepository
      * @return \Symfony\Component\HttpFoundation\Response

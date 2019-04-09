@@ -11,7 +11,7 @@
             </li>
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('easyadmin') }}">Admin</a>
+                    <a class="nav-link" href="/index.php{{ path('easyadmin') }}">Admin</a>
                 </li>
             {% endif %}
             <li class="nav-item dropdown float-right">
@@ -21,7 +21,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ path('account') }}">Mi cuenta</a>
                     {% if is_granted('ROLE_ADMIN') %}
-                      <a class="dropdown-item" href="{{ path('easyadmin') }}">Admin</a>
+                      <a class="dropdown-item" href="/index.php{{ path('easyadmin') }}">Admin</a>
                     {% endif %}
                     <a class="dropdown-item" href="{{ path('app_logout') }}">Cerrar sesion</a>
                 </div>
