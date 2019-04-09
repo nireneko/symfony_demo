@@ -60,7 +60,7 @@ class ProgressController extends BaseController
         }
 
         $limit = 10;
-        $progresses = $progressRepository->getAllProgressOfUser($user, $page, $limit);//$item->get();
+        $progresses = $progressRepository->getAllProgressOfUser($user, $page, $limit);
 
         $progressesResult = $progresses['paginator'];
         $progressesFullQuery = $progresses['query'];
