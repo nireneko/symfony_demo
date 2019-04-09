@@ -52,4 +52,21 @@ class UserTools
         $this->entityManager->flush();
     }
 
+    public function createUser(string $username, string $password) {
+        $date = new \DateTime();
+        $roles = ['ROLE_USER', 'ROLE_ADMIN'];
+
+        $user = new User();
+        $user->setUsername($username);
+        $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
+        $user->setCreated($date);
+        $user->setLastLogin($date);
+        $user->setEmail('demo@nireneko.com');
+        $user->setActive(True);
+        $user->setRoles($roles);
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+    }
+
 }
