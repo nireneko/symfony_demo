@@ -68,7 +68,7 @@ class ProgressController extends BaseController
         $maxPages = ceil($progresses['paginator']->count() / $limit);
 
         return $this->render('progress/list.html.twig', [
-            'form_add' => $formAdd->createView(),
+            'form' => $formAdd->createView(),
             'progresses' => $progressesResult,
             'page' => $page,
             'maxPages' => $maxPages,

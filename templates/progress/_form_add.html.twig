@@ -1,14 +1,30 @@
-{{ form_start(form_add, {
+{{ form_start(form, {
     'attr': {
         'class': 'form-inline js-progress-new',
         'novalidate': 'novalidate'
     }
 }) }}
-    {{ form_errors(form_add) }}
+    {{ form_errors(form, {
+        'attr': {
+            'class': 'mr-2 mb-2 form-control',
+        }
+    }) }}
 
-    {{ form_widget(form_add.date) }}
-    {{ form_widget(form_add.weight) }}
-    {{ form_widget(form_add.measure) }}
+    {{ form_widget(form.date, {
+        'attr': {
+            'class': 'mr-2 mb-2 form-control',
+        }
+    }) }}
+    {{ form_widget(form.weight, {
+        'attr': {
+            'class': 'mr-2 mb-2 form-control',
+        }
+    }) }}
+    {{ form_widget(form.measure, {
+        'attr': {
+            'class': 'mr-2 mb-2 form-control',
+        }
+    }) }}
 
-    <button type="submit" class="btn btn-primary">Crear</button>
-{{ form_end(form_add) }}
+    <button type="submit" class="btn btn-primary mb-2">Crear</button>
+{{ form_end(form) }}
