@@ -79,13 +79,15 @@
             initialize: function ($wrapper) {
                 this.$wrapper = $wrapper;
 
-                this.$wrapper.find('.js-remove-progress').on(
+                this.$wrapper.on(
                     'click',
+                    '.js-remove-progress',
                     this.progressDelete
                 );
 
-                this.$wrapper.find('.js-progress-new').on(
+                this.$wrapper.on(
                     'submit',
+                    '.js-progress-new',
                     this.handleNewFormSubmit.bind(this)
                 );
 
@@ -126,7 +128,6 @@
                     data: $form.serialize(),
                     success: function (data) {
                         $tbody.prepend(data);
-                        console.log(data);
                     },
                     error: function (jqXHR) {
                         $form.closest('.js-new-progress-form-wrapper')
