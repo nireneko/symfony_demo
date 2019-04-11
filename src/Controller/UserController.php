@@ -37,7 +37,7 @@ class UserController extends BaseController
 
         $user = $this->getUser();
 
-        $form = $this->createForm(UserAccountFormType::class);
+        $form = $this->createForm(UserAccountFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
