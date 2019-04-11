@@ -28,7 +28,7 @@ class DefaultController extends BaseController
      */
     public function index(RouterInterface $router)
     {
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('progress_list');
     }
 
     /**
