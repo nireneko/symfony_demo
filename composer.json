@@ -8,17 +8,18 @@
         "easycorp/easyadmin-bundle": "^2.0",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/apache-pack": "^1.0",
-        "symfony/asset": "4.3.*",
-        "symfony/console": "4.3.*",
-        "symfony/dotenv": "4.3.*",
+        "symfony/asset": "*",
+        "symfony/console": "*",
+        "symfony/dotenv": "*",
+        "symfony/filesystem": "4.3.*",
         "symfony/flex": "^1.1",
-        "symfony/form": "4.3.*",
-        "symfony/framework-bundle": "4.3.*",
+        "symfony/form": "*",
+        "symfony/framework-bundle": "*",
         "symfony/orm-pack": "^1.0",
-        "symfony/security-bundle": "4.3.*",
-        "symfony/twig-bundle": "4.3.*",
-        "symfony/validator": "4.3.*",
-        "symfony/yaml": "4.3.*"
+        "symfony/security-bundle": "*",
+        "symfony/twig-bundle": "*",
+        "symfony/validator": "*",
+        "symfony/yaml": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -73,6 +74,6 @@
         "symfony/debug-pack": "^1.0",
         "symfony/maker-bundle": "^1.11",
         "symfony/profiler-pack": "^1.0",
-        "symfony/web-server-bundle": "4.3.*"
+        "symfony/web-server-bundle": "*"
     }
 }
