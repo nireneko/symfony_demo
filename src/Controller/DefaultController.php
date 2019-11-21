@@ -13,7 +13,6 @@ use App\Entity\Progress;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\RouterInterface;
 
 /**
  * @IsGranted("IS_AUTHENTICATED_REMEMBERED")
@@ -23,10 +22,9 @@ class DefaultController extends BaseController
 
     /**
      * @Route("/", name="index")
-     * @param RouterInterface $router
      * @return RedirectResponse
      */
-    public function index(RouterInterface $router)
+    public function index()
     {
         return $this->redirectToRoute('progress_list');
     }

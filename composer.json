@@ -11,7 +11,7 @@
         "symfony/asset": "*",
         "symfony/console": "*",
         "symfony/dotenv": "*",
-        "symfony/filesystem": "4.3.*",
+        "symfony/filesystem": "*",
         "symfony/flex": "^1.1",
         "symfony/form": "*",
         "symfony/framework-bundle": "*",
@@ -65,7 +65,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.3.*"
+            "require": "4.4.*"
         }
     },
     "require-dev": {
@@ -74,6 +74,7 @@
         "symfony/debug-pack": "^1.0",
         "symfony/maker-bundle": "^1.11",
         "symfony/profiler-pack": "^1.0",
+        "symfony/error-handler": "*",
         "symfony/web-server-bundle": "*"
     }
 }
